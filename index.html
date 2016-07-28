@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script>
+    google.charts.load('current', { 'packages': ['map'] });
+    google.charts.setOnLoadCallback(drawMap);
+    
+    function drawMap() {
+    google.script.run.withSuccessHandler(onSuccess).getData();
+    }
+    
+    function onSuccess(values) {
+    var data = google.visualization.arrayToDataTable(values);
+    var options = { showTip: true };
+
+    var map = new google.visualization.Map(document.getElementById('map'));
+    
+    map.draw(data, options);
+    };
+  
+  </script>
+  <style>
+  html, body {
+    height: 100%;
+    }
+    #map {
+    min-height: 99%;
+    }
+  </style>
+  </head>
+  <body>
+    <div id='map'></div>
+  </body>
+</html>
+
+
